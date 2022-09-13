@@ -3,12 +3,13 @@ import { gql, useQuery, useReactiveVar } from '@apollo/client';
 import LoggedIn from './routers/LoggedIn';
 import LoggedOut from './routers/LoggedOut';
 import { isLoggedInVar } from './apollo';
+import { css, Global } from '@emotion/react';
 
-// const IS_LOGGED_IN = gql`
-//   {
-//     isLoggedIn @client
-//   }
-// `;
+const reset = css`
+  * {
+    box-sizing: border-box;
+  }
+`;
 
 function App() {
   // reactive variables read
@@ -19,7 +20,12 @@ function App() {
 
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   console.log(isLoggedIn);
-  return isLoggedIn ? <LoggedIn /> : <LoggedOut />;
+  return (
+    <>
+      <Global styles={reset} />
+      {isLoggedIn ? <LoggedIn /> : <LoggedOut />}
+    </>
+  );
 }
 
 export default App;
