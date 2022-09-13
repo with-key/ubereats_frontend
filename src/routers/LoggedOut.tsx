@@ -1,16 +1,17 @@
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { isLoggedInVar } from "../apollo";
+import Login from "../pages/Login";
+import { Signup } from "../pages/Signup";
 
 function LoggedOut() {
-  // reactive variables update
-  const onClick = () => {
-    isLoggedInVar(true);
-  };
   return (
-    <div>
-      <h1>로그아웃</h1>
-      <button onClick={onClick}>로그인 하기</button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
