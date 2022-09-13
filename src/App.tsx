@@ -8,6 +8,17 @@ import { css, Global } from '@emotion/react';
 const reset = css`
   * {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  input {
+    outline: none;
   }
 `;
 

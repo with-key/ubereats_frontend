@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
+import React from 'react';
 import { StInput } from './input.style';
-import useInput from './input.hook';
 
 export type InputProps = {
   name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: 'text' | 'password' | 'email';
   placeholder?: string;
 };
 
-export const Input = ({ name, placeholder }: InputProps) => {
-  const { value, onChangeHandler } = useInput('');
-
-  return <StInput value={value} onChange={onChangeHandler} />;
+export const Input = ({ type, ...rest }: InputProps) => {
+  return <StInput type={type ?? 'text'} {...rest} />;
 };

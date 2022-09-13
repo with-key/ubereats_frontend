@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
-import { InputProps } from '.';
 
 export const StInput = styled.input`
   height: 46px;
-  outline: none;
   width: 100%;
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #eee;
 `;
