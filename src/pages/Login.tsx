@@ -1,5 +1,13 @@
-import React from "react";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Input } from '../components/input';
+import { Flex } from '../components/ui/Flex';
 
 export default function Login() {
-  return <div>Login</div>;
+  const { register } = useForm();
+  return (
+    <Flex>
+      <Input name="id" />
+    </Flex>
+  );
 }

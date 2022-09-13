@@ -1,9 +1,8 @@
-import React from "react";
-
-import { gql, useQuery, useReactiveVar } from "@apollo/client";
-import LoggedIn from "./routers/LoggedIn";
-import LoggedOut from "./routers/LoggedOut";
-import { isLoggedInVar } from "./apollo";
+import React from 'react';
+import { gql, useQuery, useReactiveVar } from '@apollo/client';
+import LoggedIn from './routers/LoggedIn';
+import LoggedOut from './routers/LoggedOut';
+import { isLoggedInVar } from './apollo';
 
 // const IS_LOGGED_IN = gql`
 //   {
