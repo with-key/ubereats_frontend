@@ -30,7 +30,6 @@ function App() {
   // } = useQuery(IS_LOGGED_IN);
 
   const isLoggedIn = useReactiveVar(isLoggedInVar);
-  console.log(isLoggedIn);
   return (
     <>
       <Global styles={reset} />

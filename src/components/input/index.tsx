@@ -1,5 +1,6 @@
 import React from 'react';
 import { StInput } from './input.style';
+import * as yup from 'yup';
 
 export type InputProps = {
   name: string;
@@ -9,6 +10,8 @@ export type InputProps = {
   placeholder?: string;
 };
 
-export const Input = ({ type, ...rest }: InputProps) => {
+function Input({ type, ...rest }: InputProps) {
   return <StInput type={type ?? 'text'} {...rest} />;
-};
+}
+
+export default Input;
