@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { object } from 'yup';
 
 type Props<T, E> = {
   initialValues: T;
@@ -9,7 +8,7 @@ type Props<T, E> = {
 
 function useForm<T, E>({ initialValues, onSubmit, validate }: Props<T, E>) {
   const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState<E>();
+  const [errors, setErrors] = useState<E | null>(null);
 
   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     const { value, name } = e.target;
@@ -19,13 +18,12 @@ function useForm<T, E>({ initialValues, onSubmit, validate }: Props<T, E>) {
     });
   }
 
+  // 버튼을 클릭했을 때 실행되는 함수
   function onSubmitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (validate) {
       setErrors(validate(values));
     }
-
-    // 모든 validation을 통과했을 때 submit해야 함
   }
 
   useEffect(() => {
@@ -35,7 +33,6 @@ function useForm<T, E>({ initialValues, onSubmit, validate }: Props<T, E>) {
       }
     }
   }, [errors]);
-  // error msg
 
   return {
     values,

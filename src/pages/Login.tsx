@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { Flex } from '../components/ui/Flex';
 import Layout from '../components/ui/Layout';
@@ -10,7 +10,20 @@ import {
   loginFormValid,
   LoginFormValidErrors,
 } from '../components/input/util/loginFormValid';
-import axios from 'axios';
+import FormError from '../components/input/elem/FormError';
+import { gql, useMutation } from '@apollo/client';
+import { LoginMutation, LoginMutationVariables } from '../generated/graphql';
+
+// 클라이언트에서 GQL 요청하기
+const LOGIN_MUTATION = gql`
+  mutation login($loginInput: LoginInput!) {
+    login(input: $loginInput) {
+      ok
+      token
+      error
+    }
+  }
+`;
 
 type LoginForm = {
   email: string;
@@ -30,9 +43,21 @@ function Login() {
     onSubmit,
   });
 
-  async function onSubmit() {
-    console.log('hello');
-    // await axios.get('https://jsonplaceholder.typicode.com/todos/1');
+  const [loginMutation, { loading, error, data }] = useMutation<
+    LoginMutation,
+    LoginMutationVariables
+  >(LOGIN_MUTATION);
+
+  function onSubmit() {
+    const { email, password } = values;
+    loginMutation({
+      variables: {
+        loginInput: {
+          email,
+          password,
+        },
+      },
+    });
   }
 
   return (
@@ -48,7 +73,9 @@ function Login() {
                 value={values.email}
                 onChange={onChangeHandler}
               />
-              <div>{errors?.email?.isError && errors.email.message}</div>
+              <FormError>
+                {errors?.email?.isError && errors.email.message}
+              </FormError>
               <Input
                 name="password"
                 type="password"
@@ -56,7 +83,9 @@ function Login() {
                 value={values.password}
                 onChange={onChangeHandler}
               />
-              <div>{errors?.password?.isError && errors.password.message}</div>
+              <FormError>
+                {errors?.password?.isError && errors.password.message}
+              </FormError>
               <Button>
                 <Text variants="size16">Log In</Text>
               </Button>
