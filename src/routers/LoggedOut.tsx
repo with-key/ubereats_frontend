@@ -1,15 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { isLoggedInVar } from '../apollo';
 import Login from '../pages/Login';
-import { Signup } from '../pages/Signup';
+import CreateAccount from '../pages/Signup';
 
 function LoggedOut() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<CreateAccount />} />
       </Routes>
     </BrowserRouter>
   );

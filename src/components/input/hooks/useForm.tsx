@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 type Props<T, E> = {
   initialValues: T;
@@ -10,7 +10,7 @@ function useForm<T, E>({ initialValues, onSubmit, validate }: Props<T, E>) {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState<E | null>(null);
 
-  function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+  function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     const { value, name } = e.target;
     setValues({
       ...values,
@@ -19,7 +19,7 @@ function useForm<T, E>({ initialValues, onSubmit, validate }: Props<T, E>) {
   }
 
   // 버튼을 클릭했을 때 실행되는 함수
-  function onSubmitHandler(e: React.FormEvent<HTMLFormElement>) {
+  function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (validate) {
       setErrors(validate(values));
@@ -37,8 +37,8 @@ function useForm<T, E>({ initialValues, onSubmit, validate }: Props<T, E>) {
   return {
     values,
     errors,
-    onChangeHandler,
-    onSubmitHandler,
+    changeHandler,
+    submitHandler,
   };
 }
 
