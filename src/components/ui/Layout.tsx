@@ -8,7 +8,7 @@ type Props = {
 const Container = styled.section`
   width: 100%;
   height: 100vh;
-  border: 1px solid blue;
+  background-color: #50586c;
 `;
 
 export default function Layout({ children }: Props) {

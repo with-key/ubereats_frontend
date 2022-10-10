@@ -55,6 +55,8 @@ const StText = styled.div<Pick<Props, 'variants' | 'align'>>`
   }};
 `;
 
-export default function Text({ children, variants }: Props) {
+function Text({ children, variants }: Props) {
   return <StText variants={variants}>{children}</StText>;
 }
+
+export default React.memo(Text);

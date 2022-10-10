@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import Text from '../ui/Text';
 import { StButton } from './button.style';
 
 export type ButtonProps = {
@@ -8,15 +9,13 @@ export type ButtonProps = {
   isDisabled?: boolean;
 };
 
-export const Button = ({
-  children,
-  onClick,
-  type,
-  isDisabled,
-}: ButtonProps) => {
+const Button = ({ children, onClick, type, isDisabled }: ButtonProps) => {
+  console.log('btn re');
   return (
     <StButton onClick={onClick} type={type ?? 'submit'} disabled={isDisabled}>
-      {children}
+      <Text variants="size16">{children}</Text>
     </StButton>
   );
 };
+
+export default React.memo(Button);

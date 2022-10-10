@@ -14,4 +14,4 @@ function Input({ type, ...rest }: InputProps) {
   return <StInput type={type ?? 'text'} {...rest} />;
 }
 
-export default Input;
+export default React.memo(Input);
